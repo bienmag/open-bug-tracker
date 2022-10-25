@@ -4,6 +4,8 @@ import bodyParser from "koa-bodyparser";
 import cors from "@koa/cors";
 
 import { PrismaClient } from "@prisma/client";
+import EventsController from "./controllers/events.controller";
+import { Context } from "vm";
 
 const app = new Koa();
 const port = 3000;
@@ -14,10 +16,14 @@ const router = new Router();
 app.use(cors());
 app.use(bodyParser());
 
-router.post("/events", async (ctx: Koa.Context, next: Koa.Next) => {
-  ctx.body = ctx.request.body;
-  console.log(ctx.body);
-  await next();
+router.post("/events", EventsController.createEvent);
+router.get("/projects", (ctx: Context) => {
+  console.log("hi there. ");
+  ctx.body = "hi there";
+});
+
+router.get("/projects", () => {
+  console.log("hi");
 });
 
 app.listen(port, () => {
@@ -26,4 +32,5 @@ app.listen(port, () => {
 
 app.use(router.routes());
 
+//hi
 // POST localhost:3000/events
