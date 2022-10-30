@@ -9,20 +9,23 @@ export class BugTrackerStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    // QUEUE
     // queue stacking requests
     const queue = new sqs.Queue(this, "queue", {
       queueName: "sqs",
       visibilityTimeout: cdk.Duration.seconds(300),
     });
 
+    // RECIEVER
     // lambda functions: reciever of events from API endpoint
     const reciever = new lambda.Function(this, "reciever", {
-      runtime: lambda.Runtime.NODEJS_14_X,
+      runtime: lambda.Runtime.NODEJS_16_X,
       code: lambda.Code.fromAsset("dist/lambda"),
       handler: "reciever.handler",
       onSuccess: new destinations.SqsDestination(queue),
     });
 
+    // PROCESSOR
     // lambda functions: reciever of events from SQS queue and send it to server
     const processor = new lambda.Function(this, "processor", {
       runtime: lambda.Runtime.NODEJS_14_X,
@@ -33,6 +36,7 @@ export class BugTrackerStack extends cdk.Stack {
     // send events from SQS to our lambda processor
     processor.addEventSource(new SqsEventSource(queue));
 
+    // API GATEWAY
     // API endpoint to recieve events from client
     const endpoint = new apigateway.RestApi(this, "api", {
       description: "example api gateway",
@@ -51,8 +55,8 @@ export class BugTrackerStack extends cdk.Stack {
     });
 
     // endpoint path  and method definition
-    endpoint.root.addResource("{events}");
-    endpoint.root.addMethod(
+    const resource = endpoint.root.addResource("events");
+    resource.addMethod(
       "POST",
       new apigateway.LambdaIntegration(reciever, { proxy: true })
     );
