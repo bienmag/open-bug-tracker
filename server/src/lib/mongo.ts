@@ -8,7 +8,7 @@ if (typeof url === "undefined") {
 
 const client = new MongoClient(url);
 
-const dbName = "bugtracker";
+const dbName = process.env.MONGO_DB || "bugtracker";
 
 export async function getOccurrencesCollection() {
   await client.connect();
