@@ -14,6 +14,9 @@
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@aws-cdk/aws-lambda": "^1.179.0",
+    "@aws-cdk/aws-lambda-event-sources": "^1.179.0",
+    "@aws-cdk/core": "^1.179.0",
     "@types/aws-lambda": "^8.10.108",
     "@types/jest": "^27.5.2",
     "@types/node": "10.17.27",
