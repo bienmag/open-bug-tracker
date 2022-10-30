@@ -16,17 +16,17 @@ export class BugTrackerStack extends cdk.Stack {
     });
 
     // lambda functions: reciever of events from API endpoint
-    const reciever = new lambda.Function(this, "handler", {
+    const reciever = new lambda.Function(this, "reciever", {
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: lambda.Code.fromAsset("../lambda/reciever"),
+      code: lambda.Code.fromAsset("dist/lambda"),
       handler: "reciever.handler",
       onSuccess: new destinations.SqsDestination(queue),
     });
 
     // lambda functions: reciever of events from SQS queue and send it to server
-    const processor = new lambda.Function(this, "handler", {
+    const processor = new lambda.Function(this, "processor", {
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: lambda.Code.fromAsset("../lambda/processor"),
+      code: lambda.Code.fromAsset("dist/lambda"),
       handler: "processor.handler",
     });
 

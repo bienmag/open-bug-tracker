@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import * as cdk from "@aws-cdk/core";
-import { BugTrackerStack } from "../lib/test2-stack";
+import { BugTrackerStack } from "../lib/bugtracker-stack";
 
 const app = new cdk.App();
 new BugTrackerStack(app, "TestStack", {
