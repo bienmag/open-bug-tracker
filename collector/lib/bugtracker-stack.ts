@@ -4,7 +4,6 @@ import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { SqsEventSource } from "aws-cdk-lib/aws-lambda-event-sources";
-import * as destinations from "aws-cdk-lib/aws-lambda-destinations";
 
 export class BugTrackerStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -15,15 +14,6 @@ export class BugTrackerStack extends cdk.Stack {
     const queue = new sqs.Queue(this, "queue", {
       queueName: "sqs",
       visibilityTimeout: cdk.Duration.seconds(300),
-    });
-
-    // RECIEVER
-    // lambda functions: reciever of events from API endpoint
-    const reciever = new lambda.Function(this, "reciever", {
-      runtime: lambda.Runtime.NODEJS_16_X,
-      code: lambda.Code.fromAsset("dist/lambda"),
-      handler: "reciever.handler",
-      onSuccess: new destinations.SqsDestination(queue),
     });
 
     // PROCESSOR
@@ -37,32 +27,42 @@ export class BugTrackerStack extends cdk.Stack {
     // send events from SQS to our lambda processor
     processor.addEventSource(new SqsEventSource(queue));
 
-    // API GATEWAY
-    // API endpoint to recieve events from client
-    const endpoint = new apigateway.RestApi(this, "api", {
-      description: "example api gateway",
+    // Authentication for the API => QUEUE
+    const integrationRole = new iam.Role(this, "integrationRole", {
+      assumedBy: new iam.ServicePrincipal("apigateway.amazonaws.com"),
+    });
 
-      defaultCorsPreflightOptions: {
-        allowHeaders: [
-          "Content-Type",
-          "X-Amz-Date",
-          "Authorization",
-          "X-Api-Key",
+    queue.grantSendMessages(integrationRole);
+
+    // Integration API => QUEUE
+    const sendMessageIntegration = new apigateway.AwsIntegration({
+      service: "sqs",
+      path: queue.queueName,
+      integrationHttpMethod: "POST",
+      options: {
+        credentialsRole: integrationRole,
+        requestParameters: {
+          "integration.request.header.Content-Type":
+            "'application/x-www-form-urlencoded'",
+        },
+        requestTemplates: {
+          "application/json": "Action=SendMessage&MessageBody=$input.body",
+        },
+        integrationResponses: [
+          { statusCode: "200" },
+          { statusCode: "400" },
+          { statusCode: "500" },
         ],
-        allowMethods: ["OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE"],
-        allowCredentials: true,
-        allowOrigins: ["http://localhost:3000"],
       },
     });
 
-    // endpoint path  and method definition
-    const resource = endpoint.root.addResource("events");
-    resource.addMethod(
-      "POST",
-      new apigateway.LambdaIntegration(reciever, { proxy: true })
-    );
+    // API ENDPOINT
+    const api = new apigateway.RestApi(this, "api", {});
+    const eventsEndpoint = api.root.addResource("events");
+    eventsEndpoint.addMethod("POST", sendMessageIntegration);
 
-    // create an Output for the API URL
-    new cdk.CfnOutput(this, "apiUrl", { value: endpoint.url });
+    new cdk.CfnOutput(this, "EventsEndpoint", {
+      value: `${api.url.slice(0, -1)}${eventsEndpoint.path}`,
+    });
   }
 }
