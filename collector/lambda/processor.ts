@@ -1,5 +1,4 @@
 import { APIGatewayProxyResultV2, SQSEvent } from "aws-lambda";
-// import fetch from "node-fetch";
 
 export async function handler(
   event: SQSEvent
@@ -13,8 +12,6 @@ export async function handler(
     return { subject: body.Subject, message: body.Message };
   });
 
-  // await sendPost(events);
-
   console.log("events 👉", JSON.stringify(events, null, 2));
 
   return {
@@ -22,14 +19,3 @@ export async function handler(
     statusCode: 200,
   };
 }
-
-// async function sendPost(body: any) {
-//   const url = "http://localhost:8080/events";
-//   const params = {
-//     method: "POST",
-//     mode: "cors",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(body),
-//   };
-//   await fetch(url, params);
-// }

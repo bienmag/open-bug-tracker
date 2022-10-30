@@ -1,9 +1,10 @@
-import * as cdk from "@aws-cdk/core";
-import * as sqs from "@aws-cdk/aws-sqs";
-import * as lambda from "@aws-cdk/aws-lambda";
-import * as apigateway from "@aws-cdk/aws-apigateway";
-import { SqsEventSource } from "@aws-cdk/aws-lambda-event-sources";
-import * as destinations from "@aws-cdk/aws-lambda-destinations";
+import * as cdk from "aws-cdk-lib";
+import * as sqs from "aws-cdk-lib/aws-sqs";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as apigateway from "aws-cdk-lib/aws-apigateway";
+import * as iam from "aws-cdk-lib/aws-iam";
+import { SqsEventSource } from "aws-cdk-lib/aws-lambda-event-sources";
+import * as destinations from "aws-cdk-lib/aws-lambda-destinations";
 
 export class BugTrackerStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
