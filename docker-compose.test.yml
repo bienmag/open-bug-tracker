@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  server:
+    environment:
+      DATABASE_URL: postgres://postgres:qwerty@db:5432/bugtracker-test?schema=public
+      MONGO_URL: mongodb://root:qwerty@mongo:27017/
+      MONGO_DB: bugtracker-test
+  db:
+    environment:
+      POSTGRES_DB: bugtracker-test
+    ports:
+      - 5432:5432
+  mongo:
+    environment:
+      MONGO_INITDB_DATABASE: bugtracker-test
