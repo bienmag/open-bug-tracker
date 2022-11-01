@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { APIOccurrences } from "../../../../lib/api";
 import styles from "./OccurrenceId.module.css";
 import { NextPageWithLayout } from "../../../_app";
+import type { ReactElement } from "react";
+import Layout from "../../../../components/layout";
 
 import { useUser } from "../../../../lib/auth";
 interface Occurrence {
@@ -66,6 +68,10 @@ const Occurrence: NextPageWithLayout = () => {
       </div>
     </div>
   );
-}
+};
+
+Occurrence.getLayout = function getLayout(occurrence: ReactElement) {
+  return <Layout>{occurrence}</Layout>;
+};
 
 export default Occurrence;
