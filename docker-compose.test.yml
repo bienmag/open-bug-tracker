@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  server:
+    build:
+      context: server
+      target: test
+    command: yarn test
+    environment:
+      DATABASE_URL: postgres://postgres:qwerty@db:5432/bugtracker-test?schema=public
+      MONGO_URL: mongodb://root:qwerty@mongo:27017/
+      MONGO_DB: bugtracker-test
+  db:
+    environment:
+      POSTGRES_DB: bugtracker-test
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-test:/var/lib/postgresql/data
+  mongo:
+    environment:
+      MONGO_INITDB_DATABASE: bugtracker-test
+    volumes:
+      - mongodb-test:/data/db
+      - mongodb_config-test:/data/configdb
+volumes:
+  postgres-test:
+  mongodb-test:
+  mongodb_config-test:
