@@ -13,6 +13,9 @@ import styles from "../../styles/ProjectsId.module.css";
 import { useUser } from "../../lib/auth";
 
 import Link from "next/link";
+import type { ReactElement } from "react";
+import Layout from "../../components/layout";
+import type { NextPageWithLayout } from "../_app";
 
 interface Project {
   id: number;
@@ -31,7 +34,7 @@ interface Bug {
   last_seen: Date;
 }
 
-function ProjectId(): JSX.Element {
+export default function ProjectId(): NextPageWithLayout {
   const router = useRouter();
   const id = router.query.id;
 
@@ -106,4 +109,6 @@ function ProjectId(): JSX.Element {
   );
 }
 
-export default ProjectId;
+ProjectId.getLayout = function getLayout(projectId: ReactElement) {
+  return <Layout>{projectId}</Layout>;
+};

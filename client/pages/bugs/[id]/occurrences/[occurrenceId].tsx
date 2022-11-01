@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { APIOccurrences } from "../../../../lib/api";
+import styles from "./OccurrenceId.module.css";
+import { NextPageWithLayout } from "../../../_app";
 
-import styles from "../../../../styles/OccurrenceId.module.css";
 import { useUser } from "../../../../lib/auth";
 interface Occurrence {
   _id: string;
@@ -21,7 +22,7 @@ interface Metadata {
   language: string;
 }
 
-function Occurrence(): JSX.Element {
+const Occurrence: NextPageWithLayout = () => {
   const [occurrenceDetails, setOccurrenceDetails] = useState<any>({});
 
   const router = useRouter();
