@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { APIBugs } from "../../../lib/api";
 import styles from "../../../styles/BugsId.module.css";
 import { Badge, DateTime } from "@contentful/f36-components";
+import { NextPageWithLayout } from "../../_app";
 
 interface Bug {
   id: string;
@@ -31,7 +32,7 @@ interface Metadata {
   language: string;
 }
 
-function Bug(): JSX.Element {
+function Bug(): NextPageWithLayout {
   const [bugdetails, setBugDetails] = useState<any>({});
   const [listoccurrences, setListOccurrences] = useState<any>([]);
 

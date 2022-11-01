@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { APIOccurrences } from "../../../../lib/api";
 import styles from "../../../../styles/OccurrenceId.module.css";
+import { NextPageWithLayout } from "../../../_app";
 
 interface Occurrence {
   _id: string;
@@ -20,7 +21,7 @@ interface Metadata {
   language: string;
 }
 
-function Occurrence(): JSX.Element {
+function Occurrence(): NextPageWithLayout {
   const [occurrenceDetails, setOccurrenceDetails] = useState<any>({});
 
   const router = useRouter();
