@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { APIOccurrences } from "../../../../lib/api";
 import styles from "../../../../styles/OccurrenceId.module.css";
 import { NextPageWithLayout } from "../../../_app";
+import type { ReactElement } from "react";
+import Layout from "../../../../components/layout";
 
 interface Occurrence {
   _id: string;
@@ -21,7 +23,7 @@ interface Metadata {
   language: string;
 }
 
-function Occurrence(): NextPageWithLayout {
+const Occurrence: NextPageWithLayout = () => {
   const [occurrenceDetails, setOccurrenceDetails] = useState<any>({});
 
   const router = useRouter();
@@ -63,6 +65,10 @@ function Occurrence(): NextPageWithLayout {
       </div>
     </div>
   );
-}
+};
+
+Occurrence.getLayout = function getLayout(occurrence: ReactElement) {
+  return <Layout>{occurrence}</Layout>;
+};
 
 export default Occurrence;

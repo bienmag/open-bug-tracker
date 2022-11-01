@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import { APIBugs } from "../../../lib/api";
 import styles from "../../../styles/BugsId.module.css";
 import { Badge, DateTime } from "@contentful/f36-components";
-import { NextPageWithLayout } from "../../_app";
+import type { ReactElement } from "react";
+import Layout from "../../../components/layout";
+import type { NextPageWithLayout } from "../../_app";
+import { NavbarLink } from "../../../components/navbar";
 
 interface Bug {
   id: string;
@@ -32,7 +35,7 @@ interface Metadata {
   language: string;
 }
 
-function Bug(): NextPageWithLayout {
+const Bug: NextPageWithLayout = () => {
   const [bugdetails, setBugDetails] = useState<any>({});
   const [listoccurrences, setListOccurrences] = useState<any>([]);
 
@@ -130,6 +133,15 @@ function Bug(): NextPageWithLayout {
       </div>
     </div>
   );
-}
+};
+Bug.getLayout = function getLayout(bug: ReactElement) {
+  // const router = useRouter();
 
+  const links: NavbarLink[] = [
+    // { url: "/", text: "Home" },
+    // { url: "/", text: "Home" },
+  ];
+
+  return <Layout links={links}>{bug}</Layout>;
+};
 export default Bug;
