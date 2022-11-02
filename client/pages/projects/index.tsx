@@ -1,18 +1,9 @@
-import {
-  Badge,
-  Box,
-  Card,
-  EntityList,
-  Subheading,
-  Modal,
-} from "@contentful/f36-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { Key, ReactNode, useEffect, useState } from "react";
-import FormProject from "../components/newProject";
-import { APIprojects } from "../lib/api";
-import { useUser } from "../lib/auth";
-import styles from "../styles/Projects.module.css";
+import { useEffect, useState } from "react";
+import FormProject from "../../components/newProject";
+import { APIprojects } from "../../lib/api";
+import { useUser } from "../../lib/auth";
+import styles from "./Projects.module.css";
 
 
 interface Project {

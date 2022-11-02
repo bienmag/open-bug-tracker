@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { APIBugs } from "../../../lib/api";
-import { useUser } from "../../../lib/auth";
-import styles from "../../../styles/BugsId.module.css";
+import { APIBugs } from "../../../../../lib/api";
+import { useUser } from "../../../../../lib/auth";
+import styles from "./BugsId.module.css";
 import { Badge, DateTime } from "@contentful/f36-components";
 import type { ReactElement } from "react";
-import Layout from "../../../components/layout";
-import type { NextPageWithLayout } from "../../_app";
-import { NavbarLink } from "../../../components/navbar";
+import Layout from "../../../../../components/layout";
+import type { NextPageWithLayout } from "../../../../_app";
+import { NavbarLink } from "../../../../../components/navbar";
 
 interface Bug {
   id: string;
@@ -146,4 +146,21 @@ Bug.getLayout = function getLayout(bug: ReactElement) {
 
   return <Layout links={links}>{bug}</Layout>;
 };
+
+Bug.getLayout = function getLayout(component: ReactElement, pageProps: any) {
+  const router = useRouter();
+  const projectId = router.query.projectId;
+
+
+  console.log('pageProps', pageProps)
+  const links: NavbarLink[] = [
+    { url: "/projects", text: "Home" },
+    { url: `/projects/${projectId}`, text: "Project" },
+  ];
+
+  return <Layout links={links}>{component}</Layout>;
+};
+
 export default Bug;
+
+

@@ -14,10 +14,13 @@ export default function Navbar({ links }: NavbarProps): JSX.Element {
   return (
     <div>
       <nav className={styles.navbar}>
-        {links.map((link) => (
+        {links.map((link, index, collection) => (
+
           <Link key={link.url} href={link.url}>
-            <a>{link.text}</a>
+            <a>{link.text} {index !== collection.length - 1 && <span className={styles.separator}></span>}</a>
+
           </Link>
+
         ))}
       </nav>
     </div>

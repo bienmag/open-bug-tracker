@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import { authContext } from "../lib/auth";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (projectId: ReactElement) => ReactNode;
+  getLayout?: (projectId: ReactElement, pageProps?: any) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
@@ -20,5 +20,5 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <authContext.Provider value={null}>
       <Component {...pageProps} />
     </authContext.Provider>
-  );
+    , pageProps);
 }

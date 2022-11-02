@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { APIprojects } from "../../lib/api";
+import { APIprojects } from "../../../lib/api";
 import {
   Badge,
   Card,
@@ -9,14 +9,13 @@ import {
   SectionHeading,
   DateTime,
 } from "@contentful/f36-components";
-import styles from "../../styles/ProjectsId.module.css";
+import styles from "./ProjectsId.module.css";
 import { useUser } from "../../lib/auth";
-
 import Link from "next/link";
 import type { ReactElement } from "react";
-import Layout from "../../components/layout";
-import type { NextPageWithLayout } from "../_app";
-import { NavbarLink } from "../../components/navbar";
+import Layout from "../../../components/layout";
+import type { NextPageWithLayout } from "../../_app";
+import { NavbarLink } from "../../../components/navbar";
 
 interface Project {
   id: number;
@@ -37,23 +36,23 @@ interface Bug {
 
 const ProjectId: NextPageWithLayout = () => {
   const router = useRouter();
-  const id = router.query.id;
+  const projectId = router.query.projectId;
 
   const [project, setProject] = useState<Project | undefined>();
   useUser()
 
   useEffect(() => {
-    if (typeof id !== "string") {
+    if (typeof projectId !== "string") {
       return;
     }
-    const getProject = async function (id: string) {
-      const result = await APIprojects.getProject(id);
+    const getProject = async function (projectId: string) {
+      const result = await APIprojects.getProject(projectId);
       const project = result?.data as Project;
       setProject(project);
     };
 
-    getProject(id);
-  }, [id]);
+    getProject(projectId);
+  }, [projectId]);
 
 
   return (
@@ -73,7 +72,7 @@ const ProjectId: NextPageWithLayout = () => {
           const flag = bug.solved_at ? "Solved" : "To fix";
           const variant = bug.solved_at ? "positive" : "negative";
           return (
-            <Link key={project?.id} href={`/bugs/${bug.bug_id}`}>
+            <Link key={project?.id} href={`/projects/${projectId}/bugs/${bug.bug_id}`}>
               <Card key={bug.bug_id} margin="spacingXl">
                 {" "}
                 <SectionHeading>{bug.message}</SectionHeading>
@@ -111,7 +110,9 @@ const ProjectId: NextPageWithLayout = () => {
 };
 
 ProjectId.getLayout = function getLayout(projectId: ReactElement) {
-  const links: NavbarLink[] = [{ url: "/", text: "Home" }];
+  const links: NavbarLink[] = [
+    { url: "/projects", text: "Home" },
+  ];
 
   return <Layout links={links}>{projectId}</Layout>;
 };
