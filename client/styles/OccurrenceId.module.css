@@ -1,0 +1,28 @@
+.container {
+  justify-content: center;
+  padding: 3rem 6rem;
+}
+
+.box {
+  border: 1px solid;
+  border-color: rgb(221, 219, 219);
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: start;
+  letter-spacing: 0.05rem;
+  font-weight: 400;
+}
+
+.infoTitle {
+  text-transform: uppercase;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+
+.content p {
+  font-weight: 300;
+}
+
+.content span {
+  font-weight: 600;
+}

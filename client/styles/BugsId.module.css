@@ -1,0 +1,148 @@
+.container {
+  justify-content: center;
+  padding: 3rem 6rem;
+}
+
+.upBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.messageBox {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.titleProject {
+  margin: 0;
+  margin-top: 1rem;
+  font-size: 1rem;
+  text-align: start;
+  line-height: 1.5;
+  letter-spacing: 0.15rem;
+  font-weight: 400;
+}
+
+.titleProject span {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.infoBox {
+  width: 18rem;
+  border: 1px solid;
+  border-color: rgb(221, 219, 219);
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: start;
+  letter-spacing: 0.05rem;
+  font-weight: 400;
+}
+
+.infoTitle {
+  text-transform: uppercase;
+  margin: 1rem 0;
+}
+
+.firstSeen {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: 1.8;
+}
+
+.firstSeenTitle {
+  font-weight: 700;
+}
+
+.date {
+  align-items: flex-end;
+  color: rgb(108, 108, 108);
+}
+
+.lastSeen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 1.8;
+}
+
+.lastSeenTitle {
+  font-weight: 700;
+}
+
+.numOccurrences {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 1.8;
+}
+
+.numOccurrencesTitle {
+  font-weight: 700;
+}
+
+.bottomBox {
+  background-color: brown;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.occurrencesTitle {
+  text-transform: uppercase;
+  align-items: flex-start;
+  margin: 0;
+  margin-top: 1rem;
+  font-size: 1rem;
+  text-align: start;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  font-weight: 800;
+}
+.line {
+  height: 1px;
+  background: rgb(126, 126, 126);
+}
+
+.gridTitles {
+  font-size: 0.9rem;
+  line-height: 0.15;
+  letter-spacing: 0.15rem;
+  font-weight: 400;
+  background-color: #f6f6f6;
+  padding: 0.2rem 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: black;
+}
+
+.list {
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 4rem;
+  font-weight: 300;
+  font-size: 0.9rem;
+  border-bottom: 0.05rem solid #eaeaea;
+  color: rgb(130, 130, 130);
+}
+
+.card:hover {
+  color: black;
+}

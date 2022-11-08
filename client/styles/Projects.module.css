@@ -1,0 +1,90 @@
+.container {
+  justify-content: center;
+  padding: 3rem 6rem;
+}
+.main {
+  min-height: 100vh;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  text-align: start;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  line-height: 1.15;
+  letter-spacing: 0.15rem;
+  font-weight: 700;
+}
+
+.projectForm {
+  width: 40%;
+  align-items: flex-start;
+}
+
+.list {
+  align-items: center;
+}
+
+.element {
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(210, 222, 230);
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.element:hover {
+  border-color: #225fed;
+}
+
+.upBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subTitle {
+  display: flex;
+  align-items: flex-start;
+  font-weight: 600;
+  margin: 0;
+  text-transform: capitalize;
+}
+.subBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 300;
+}
+
+.solved {
+  display: flex;
+  align-items: flex-end;
+  color: rgb(70, 167, 90);
+  background-color: rgb(186, 243, 198);
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  letter-spacing: 0.18rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.toFix {
+  display: flex;
+  align-items: flex-end;
+  color: rgb(229, 53, 82);
+  background-color: rgb(243, 186, 186);
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  letter-spacing: 0.18rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+}

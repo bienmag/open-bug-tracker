@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-1.1.x", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Bugs {
+  bug_id         String    @id @default(uuid())
+  project_id     Int
+  project        Project   @relation(fields: [project_id], references: [id])
+  message        String
+  stack_trace    String
+  num_occurences Int
+  first_seen     DateTime
+  last_seen      DateTime
+  solved_at      DateTime?
+
+  @@unique(fields: [project_id, message], name: "project_message")
+}
+
+model Project {
+  id         Int    @id @default(autoincrement())
+  name       String
+  bugs       Bugs[]
+  creator    User   @relation(fields: [creator_id], references: [id])
+  creator_id Int
+}
+
+model User {
+  id           Int       @id
+  github_token String
+  github_user  String    @unique
+  avatar_url   String
+  email        String?
+  projects     Project[]
+  name         String?
+}

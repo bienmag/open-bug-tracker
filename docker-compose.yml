@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+  client:
+    build:
+      context: client
+    environment:
+      NODE_ENV: development
+      API_BASE_URL: http://server:3000/
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/app
+    command: yarn dev
+  server:
+    build:
+      context: server
+    depends_on:
+      - db
+      - mongo
+    environment:
+      DATABASE_URL: postgres://postgres:qwerty@db:5432/bugtracker?schema=public
+      MONGO_URL: mongodb://root:qwerty@mongo:27017/
+      PORT: 8080
+    ports:
+      - 8080:8080
+    volumes:
+      - ./server:/app
+    command: yarn dev
+  dummy:
+    build:
+      context: dummy
+    ports:
+      - 3001:3000
+    volumes:
+      - ./dummy:/app
+    command: yarn start
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: bugtracker
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  mongo:
+    image: mongo
+    # restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: qwerty
+      MONGO_INITDB_DATABASE: bugtracker
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+  mongo-express:
+    image: mongo-express
+    # restart: always
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: qwerty
+      ME_CONFIG_MONGODB_URL: mongodb://root:qwerty@mongo:27017/
+
+volumes:
+  postgres:
+  mongodb:
+  mongodb_config:

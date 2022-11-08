@@ -1,0 +1,25 @@
+name: Build Server
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      - name: Install dependencies
+        run: yarn
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test
+        env:
+          DATABASE_URL: postgres://dummy
+          MONGO_URL: mongodb://dummy
+          PORT: 8080
