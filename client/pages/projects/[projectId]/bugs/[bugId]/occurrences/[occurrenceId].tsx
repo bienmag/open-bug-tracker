@@ -1,9 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { APIOccurrences } from "../../../../lib/api";
+import { APIOccurrences } from "../../../../../../lib/api";
+import styles from "./OccurrenceId.module.css";
+import { NextPageWithLayout } from "../../../../../_app";
+import type { ReactElement } from "react";
+import Layout from "../../../../../../components/layout";
+import { NavbarLink } from "../../../../../../components/navbar";
+import { useUser } from "../../../../../../lib/auth";
 
-import styles from "../../../../styles/OccurrenceId.module.css";
-import { useUser } from "../../../../lib/auth";
 interface Occurrence {
   _id: string;
   project_id: number;
@@ -21,7 +25,7 @@ interface Metadata {
   language: string;
 }
 
-function Occurrence(): JSX.Element {
+const Occurrence: NextPageWithLayout = () => {
   const [occurrenceDetails, setOccurrenceDetails] = useState<any>({});
 
   const router = useRouter();
@@ -65,6 +69,21 @@ function Occurrence(): JSX.Element {
       </div>
     </div>
   );
-}
+};
+
+Occurrence.getLayout = function getLayout(component: ReactElement, pageProps: any) {
+  const router = useRouter();
+  const { projectId, bugId } = router.query;
+
+
+  console.log('pageProps', pageProps)
+  const links: NavbarLink[] = [
+    { url: "/projects", text: "Home" },
+    { url: `/projects/${projectId}`, text: "Project" },
+    { url: `/projects/${projectId}/bugs/${bugId}`, text: "Bug" },
+  ];
+
+  return <Layout links={links}>{component}</Layout>;
+};
 
 export default Occurrence;

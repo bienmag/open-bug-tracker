@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../styles/Projects.module.css";
+import styles from "../../pages/projects/Projects.module.css";
 import {
   Form,
   FormControl,

@@ -1,0 +1,8 @@
+.navbar {
+  padding: 3rem 6rem;
+}
+.separator {
+  border-right: 1px solid #eaeaea;
+  height: 32px;
+  margin: 0 16px;
+}
