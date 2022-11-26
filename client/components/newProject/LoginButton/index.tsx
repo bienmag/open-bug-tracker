@@ -1,10 +1,12 @@
-import React from 'react';
-import styles from './LoginButton.module.css';
-import Link from 'next/link';
+/** @format */
+
+import React from "react";
+import styles from "./LoginButton.module.css";
+import Link from "next/link";
 
 interface LoginButtonProps {
   href: string;
-  children: React.ReactNode[] | React.ReactNode;
+  children: React.ReactNode;
 }
 
 export default function LoginButton({

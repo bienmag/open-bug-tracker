@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import styles from "../../styles/Projects.module.css";
 import {
@@ -52,7 +54,7 @@ export default function FormProject({
             type="text"
             onChange={handleInput}
             placeholder="Write new project.."
-          ></TextInput>
+          />
           <FormControl.HelpText marginTop="spacingXs" marginBottom="spacingXs">
             Please enter the project name
           </FormControl.HelpText>

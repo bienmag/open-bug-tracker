@@ -1,3 +1,5 @@
+/** @format */
+
 import Koa, { Context } from "koa";
 import Router from "koa-router";
 import bodyParser from "koa-bodyparser";
@@ -84,7 +86,7 @@ router.get("/login/github/authorize", async (ctx: Context) => {
   const token = jwt.sign({ id, username, email, name, avatarUrl }, JWT_SECRET);
 
   // Redirect to frontend
-  ctx.redirect(`http://localhost:3000?token=${token}`);
+  ctx.redirect(`${process.env.DEPLOY_ENV}?token=${token}`);
 });
 
 const authRouter = new Router();

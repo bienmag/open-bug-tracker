@@ -1,3 +1,5 @@
+/** @format */
+
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { APIOccurrences } from "../../../../lib/api";
@@ -26,8 +28,7 @@ function Occurrence(): JSX.Element {
 
   const router = useRouter();
   const { id: bugId, occurrenceId } = router.query;
-  useUser()
-
+  useUser();
 
   useEffect(() => {
     getOccurrence();
@@ -35,7 +36,7 @@ function Occurrence(): JSX.Element {
 
   async function getOccurrence() {
     if (typeof bugId !== "string" || typeof occurrenceId !== "string") {
-      return;
+      throw Error("Bug or occurrence ID is undefined");
     }
     const result = await APIOccurrences.ocurrenceDetails(bugId, occurrenceId);
     setOccurrenceDetails(result?.data);

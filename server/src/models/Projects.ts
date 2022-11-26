@@ -1,3 +1,5 @@
+/** @format */
+
 import { getOccurrencesCollection } from "../lib/mongo";
 import prisma from "../lib/prisma";
 
@@ -21,7 +23,6 @@ class Project {
         name: projectName,
         creator: {
           connect: {
-            // TODO: This should be the user that is logged in
             id: user_id,
           },
         },
@@ -75,30 +76,6 @@ class Project {
     };
     return projectAssembled;
   }
-
-  // static async getBugdetails(id: number, bug_id: string): Promise<any> {
-  //   const project = await prisma.project.findUniqueOrThrow({
-  //     where: {
-  //       id: id
-  //     }
-  //   })
-  //   const bug = await prisma.bugs.findUniqueOrThrow({
-  //     where: {
-  //       bug_id: bug_id
-  //     }
-  //   })
-
-  //   const occurrences = await getOccurrencesCollection()
-  //   const result = await occurrences.find({ bug_id: bug_id }).toArray()
-
-  //   const bugDetails = {
-  //     ...project,
-  //     bug,
-  //     result
-  //   }
-
-  //   return bugDetails
-  // }
 }
 
 export default Project;

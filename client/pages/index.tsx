@@ -1,4 +1,9 @@
-/* eslint-disable react/no-unescaped-entities */
+/**
+ * /* eslint-disable react/no-unescaped-entities
+ *
+ * @format
+ */
+
 import { Notification } from "@contentful/f36-components";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -9,6 +14,10 @@ import { useUser } from "../lib/auth";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const localHost = "http://localhost:";
+  const PORT3000 = "3000/";
+  const PORT8080 = "8080/";
+
   const router = useRouter();
   const { token } = router.query;
 
@@ -37,25 +46,28 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to the Bug Tracker</h1>
 
-        <h1>Don't just track errors, continuosly improve your app </h1>
+        <h1>Track errors and continously improve your app </h1>
 
         <p className={styles.description}>
           Follow these easy steps to begin tracking
         </p>
 
         <div className={styles.grid}>
-          <a href="http://localhost:8080/login/github" className={styles.card}>
+          <a
+            href={`${localHost + PORT8080}login/github`}
+            className={styles.card}
+          >
             <h2>1. Login with GitHub &rarr;</h2>
             <p>
               We made it easy. You only need to login using your GitHub account.
             </p>
           </a>
 
-          <a href="http://localhost:3000/projects" className={styles.card}>
+          <a href={`${localHost + PORT3000}projects`} className={styles.card}>
             <h2>2. Create a project &rarr;</h2>
             <p>
               Only authorized users can create a project. Please make sure you
-              didn\'t skip Step 1
+              do not skip Step 1
             </p>
           </a>
 
@@ -81,13 +93,13 @@ const Home: NextPage = () => {
             </p>
           </a>
 
-          <a href="http://localhost:3000/projects" className={styles.card}>
+          <a href={`${localHost + PORT3000}projects`} className={styles.card}>
             <h2>
               4. Run the package in your app and explore the errors &rarr;
             </h2>
             <p>Go to my projects</p>
           </a>
-          <LoginButton href="http://localhost:8080/login/github">
+          <LoginButton href={`${localHost + PORT8080}login/github`}>
             Sign in with GitHub
           </LoginButton>
         </div>
