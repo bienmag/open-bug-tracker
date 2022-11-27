@@ -23,7 +23,7 @@ const ProjectController = {
       console.log(error);
     }
   },
-
+  // test
   async getProject(ctx: Koa.Context) {
     try {
       const id = parseInt(ctx.params.id);
