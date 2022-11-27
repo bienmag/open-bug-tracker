@@ -1,18 +1,18 @@
+/** @format */
+
 import axios from "axios";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import { config } from "process";
 
+const localhost = "http://localhost:";
+
 interface Data {
   name: string;
 }
 
-function handler(req: NextApiRequest, res: NextApiResponse<Data>): void {
-  res.status(200).json({ name: "John Doe" });
-}
-
 const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: process.env.DEPLOY_ENV || localhost + process.env.PORT,
 });
 
 interface Project {
@@ -37,7 +37,7 @@ const APIprojects = {
         name: project,
       });
     } catch (error) {
-      console.log(error);
+      throw new Error("Was not able to post project");
     }
   },
   async getProjects(): Promise<Project[] | undefined> {
@@ -46,7 +46,7 @@ const APIprojects = {
         await api.get<Project[]>("/projects")
       ).data;
     } catch (error) {
-      console.log(error);
+      throw new Error("was not able to get project");
     }
   },
   async getProject(id: string) {
@@ -55,7 +55,7 @@ const APIprojects = {
       console.log(result);
       return result;
     } catch (error) {
-      console.log(error);
+      throw new Error("was not able to get bugs");
     }
   },
 };
@@ -98,20 +98,18 @@ interface BugAPI {
       };
     }
   ];
-
 }
 
 interface Bug {
-  bug_id: string,
-  message: string,
-  solved_at: null,
-  first_seen: string,
-  last_seen: string
-  occurrences: Object[]
+  bug_id: string;
+  message: string;
+  solved_at: null;
+  first_seen: string;
+  last_seen: string;
+  occurrences: Object[];
 }
 
 const APIBugs = {
-
   async getBug(id: string) {
     try {
       return await api.get<Bug>(`/bugs/${id}`);
@@ -122,19 +120,15 @@ const APIBugs = {
 
   async getBugs() {
     try {
-      return await api.get<Bug[]>('/bugs');
+      return await api.get<Bug[]>("/bugs");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  },
+};
 
 const setToken = function (token: string): void {
-  api.defaults.headers.common["Authorization"] = `Bearer ${token}`
+  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
 
-}
-
-
-
-
-export { handler, api, APIprojects, APIBugs, APIOccurrences, setToken };
+export { api, APIprojects, APIBugs, APIOccurrences, setToken };

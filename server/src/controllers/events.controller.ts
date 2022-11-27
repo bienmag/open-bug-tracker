@@ -1,3 +1,5 @@
+/** @format */
+
 import Koa from "koa";
 import { ObjectId } from "mongodb";
 
@@ -13,6 +15,7 @@ interface EventInput {
 
 const EventsController = {
   async createEvent(ctx: Koa.Context, next: Koa.Next) {
+    // doing upsert was causing errors which is why findunique is used instead
     try {
       const event = ctx.request.body as unknown as EventInput;
       let bug = await prisma.bugs.findUnique({
@@ -60,7 +63,6 @@ const EventsController = {
         message: event.message,
         stack_trace: event.stack_trace,
         metadata: event.metadata,
-
       });
 
       ctx.status = 202;

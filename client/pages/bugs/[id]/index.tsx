@@ -1,3 +1,5 @@
+/** @format */
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -33,12 +35,14 @@ interface Metadata {
 }
 
 function Bug(): JSX.Element {
-  const [bugdetails, setBugDetails] = useState<any>({});
-  const [listoccurrences, setListOccurrences] = useState<any>([]);
+  const [bugdetails, setBugDetails] = useState<object | undefined>({});
+  const [listoccurrences, setListOccurrences] = useState<object | undefined>(
+    []
+  );
 
-  const router = useRouter()
-  const id = router.query.id
-  useUser()
+  const router = useRouter();
+  const id = router.query.id;
+  useUser();
 
   useEffect(() => {
     getBug();

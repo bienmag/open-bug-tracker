@@ -1,3 +1,5 @@
+/** @format */
+
 import Koa from "koa";
 import Project from "../models/Projects";
 
@@ -26,7 +28,7 @@ const ProjectController = {
     try {
       const id = parseInt(ctx.params.id);
       if (id === undefined) {
-        throw new Error("no project name");
+        ctx.throw(401, "no project name");
       }
       const result = await Project.getProject(id);
       console.log(result);

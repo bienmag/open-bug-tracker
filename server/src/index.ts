@@ -27,7 +27,6 @@ var options = {
 
 app.use(async (ctx, next) => {
   ctx.set("Access-Control-Allow-Origin", "*");
-  ctx.set("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
   await next();
 });
 
@@ -117,14 +116,6 @@ authRouter.get("/project/:id", ProjectController.getProject);
 authRouter.get("/bugs/:id/occurrence/:id", EventsController.getEvent);
 
 router.use(authRouter.routes());
-
-// router.get("/health", (ctx: Context) => {
-//   ctx.body = ctx.req.oidc.isAuthenticated() ? "Logged in" : "Logged out";
-// });
-// //@ts-ignore
-// router.get("/private", requiresAuth(), (ctx: Context) => {
-//   ctx.body = ctx.req.oidc.user;
-// });
 
 app.listen(port, () => {
   console.log(`🚀 Server listening ${port} 🍟 🚀`);

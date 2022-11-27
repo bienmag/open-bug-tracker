@@ -1,3 +1,5 @@
+/** @format */
+
 import { APIGatewayProxyResultV2, SQSEvent } from "aws-lambda";
 
 export async function handler(
@@ -12,8 +14,6 @@ export async function handler(
 
     return { subject: body.Subject, message: body.Message };
   });
-
-  console.log("events 👉", JSON.stringify(events, null, 2));
 
   return {
     body: JSON.stringify({ events }),

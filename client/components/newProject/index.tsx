@@ -36,12 +36,6 @@ export default function FormProject({
       setProject("");
     }
   };
-  const submitForm = () => {
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 1000);
-  };
 
   return (
     <div className={styles.projectForm}>
