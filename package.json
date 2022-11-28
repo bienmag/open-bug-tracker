@@ -1,5 +1,23 @@
 {
+  "name": "open-bug-tracker",
+  "version": "1.0.0",
+  "description": "Open-source bug tracker for JS",
+  "main": "index.js",
+  "repository": "git@github.com:EgeEgd/open-bug-tracker.git",
+  "author": "arol.dev august and september teams",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "devDependencies": {
     "turbo": "^1.6.3"
+  },
+  "scripts": {
+    "start": "turbo run apps/bug-tracker",
+    "build": "turbo build apps/bug-tracker",
+    "test": "turbo test apps/bug-tracker",
+    "dev": "docker-compose up -d && turbo dev"
   }
 }

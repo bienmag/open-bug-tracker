@@ -1,5 +1,5 @@
 {
-  "name": "open-bug-tracker",
+  "name": "open-bug-tracker-script",
   "version": "1.0.0",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",

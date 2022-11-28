@@ -3,10 +3,14 @@
 import Koa from "koa";
 import Project from "../models/Projects";
 
+interface CreateProjectRequest {
+  name: string;
+}
+
 const ProjectController = {
   async createProject(ctx: Koa.Context, next: Koa.Next) {
-    const body = ctx.request.body;
-    if (body === undefined || typeof body.name !== "string") {
+    const body = <CreateProjectRequest>ctx.request.body;
+    if (body === null || typeof body !== 'object' || typeof body.name !== "string") {
       throw new Error("no project name");
     }
 
