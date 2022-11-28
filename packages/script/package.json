@@ -10,11 +10,23 @@
   "author": "eduim <eduardo.im92@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "tsup": "^6.5.0",
     "typescript": "^4.8.4",
     "user-agent-data-types": "^0.3.0"
   },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "dts": true,
+    "sourcemap": true,
+    "format": [
+      "esm",
+      "cjs"
+    ]
+  },
   "scripts": {
-    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "prepublish": "npm run tsc"
+    "build": "tsup",
+    "dev": "tsup --watch"
   }
 }
