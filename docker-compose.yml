@@ -1,3 +1,5 @@
+# @format
+
 version: "3.8"
 
 services:
@@ -12,29 +14,29 @@ services:
     volumes:
       - ./client:/app
     command: yarn dev
-  server:
-    build:
-      context: server
-    depends_on:
-      - db
-      - mongo
-    environment:
-      DATABASE_URL: postgres://postgres:qwerty@db:5432/bugtracker?schema=public
-      MONGO_URL: mongodb://root:qwerty@mongo:27017/
-      PORT: 8080
-    ports:
-      - 8080:8080
-    volumes:
-      - ./server:/app
-    command: yarn dev
-  dummy:
-    build:
-      context: dummy
-    ports:
-      - 3001:3000
-    volumes:
-      - ./dummy:/app
-    command: yarn start
+  # server:
+  #   build:
+  #     context: server
+  #   depends_on:
+  #     - db
+  #     - mongo
+  #   environment:
+  #     DATABASE_URL: postgres://postgres:qwerty@db:5432/bugtracker?schema=public
+  #     MONGO_URL: mongodb://root:qwerty@mongo:27017/
+  #     PORT: 8080
+  #   ports:
+  #     - 8080:8080
+  #   volumes:
+  #     - ./server:/app
+  #   command: yarn dev
+  # dummy:
+  #   build:
+  #     context: dummy
+  #   ports:
+  #     - 3001:3000
+  #   volumes:
+  #     - ./dummy:/app
+  #   command: yarn start
   db:
     image: postgres
     restart: always
