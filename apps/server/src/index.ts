@@ -74,7 +74,9 @@ router.get("/login/github/authorize", async (ctx: Context) => {
   const userResponse = await axios.get("https://api.github.com/user", {
     headers: {
       Authorization: `token ${accessToken}`,
-    },
+      Accept: "application/json",
+      'accept-encoding': '*',
+    }
   });
 
   // Create USER
@@ -85,7 +87,7 @@ router.get("/login/github/authorize", async (ctx: Context) => {
   const token = jwt.sign({ id, username, email, name, avatarUrl }, JWT_SECRET);
 
   // Redirect to frontend
-  ctx.redirect(`${process.env.DEPLOY_ENV}?token=${token}`);
+  ctx.redirect(`${process.env.CLIENT_HOST}?token=${token}`);
 });
 
 const authRouter = new Router();
