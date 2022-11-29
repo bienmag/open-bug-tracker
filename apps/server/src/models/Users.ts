@@ -1,3 +1,5 @@
+/** @format */
+
 import exp from "constants";
 import prisma from "../lib/prisma";
 import Project from "./Projects";
@@ -14,11 +16,11 @@ class User {
   constructor(
     public id: number,
     public username: string,
-    public avatarUrl: string,
+    public avatarUrl: string | null,
     public email: string | null,
     public projects: Project[] = [],
     public name: string | null
-  ) { }
+  ) {}
 
   static async login(
     githubUser: GithubUser,

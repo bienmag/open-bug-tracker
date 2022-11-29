@@ -10,7 +10,8 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import LoginButton from "../components/newProject/LoginButton";
-import { useUser } from "../lib/auth";
+import { api } from "../lib/api";
+import { UseUser } from "../lib/auth";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -21,11 +22,14 @@ const Home: NextPage = () => {
   const router = useRouter();
   const { token } = router.query;
 
-  const { setToken } = useUser();
+  const { setToken } = UseUser();
   useEffect(() => {
+    const bearer = api.defaults.headers.common["Authorization"];
+
+    console.log(bearer);
     if (typeof token === "string") {
-      console.log("whats going on here");
       setToken(token);
+      console.log("token: ", token);
       Notification.setPlacement("top");
       Notification.success(
         "You are successfully logged in. You can now create a new project or explore an existing one."

@@ -126,8 +126,8 @@ const APIBugs = {
     }
   },
 };
-
 const setToken = function (token: string): void {
+  console.log(api.defaults.headers.common);
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 

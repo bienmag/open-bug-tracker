@@ -1,3 +1,5 @@
+/** @format */
+
 import {
   Badge,
   Box,
@@ -11,9 +13,8 @@ import { useRouter } from "next/router";
 import { Key, ReactNode, useEffect, useState } from "react";
 import FormProject from "../components/newProject";
 import { APIprojects } from "../lib/api";
-import { useUser } from "../lib/auth";
+import { UseUser } from "../lib/auth";
 import styles from "../styles/Projects.module.css";
-
 
 interface Project {
   id: number;
@@ -26,7 +27,7 @@ function Projects(): JSX.Element {
   const [listProjects, setListProjects] = useState<any>([]);
   const [projectId, setProjectid] = useState("");
 
-  useUser()
+  UseUser();
 
   const getProjects = async function () {
     const result = await APIprojects.getProjects();

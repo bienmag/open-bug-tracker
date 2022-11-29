@@ -75,8 +75,8 @@ router.get("/login/github/authorize", async (ctx: Context) => {
     headers: {
       Authorization: `token ${accessToken}`,
       Accept: "application/json",
-      'accept-encoding': '*',
-    }
+      "accept-encoding": "*",
+    },
   });
 
   // Create USER
