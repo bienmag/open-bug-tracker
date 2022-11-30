@@ -8,6 +8,7 @@ import {
   Subheading,
   Modal,
 } from "@contentful/f36-components";
+import { NextPageContext } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Key, ReactNode, useEffect, useState } from "react";

@@ -121,3 +121,30 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+// // Dear Next.js,
+// // I want this page to be generated at build time
+// // in my machine or in Github Actions
+// // so later when users request this route
+// // they get a static HTML.
+// // Salute,
+// export async function getStaticProps() {
+
+// }
+
+// Hey ya,
+// I want this page to be generated at request time
+// in the server machine when deployed
+// so when a user requests this route
+// all data is dynamically processed.
+// Out,
+export async function getServerSideProps(context: NextPageContext) {
+  const { token } = context.query
+  if (token) {
+    context.res?.setHeader('set-cookie', `token=${token};SameSite=Lax;`)
+  }
+
+  return {
+    props: {}
+  }
+}
