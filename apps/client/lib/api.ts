@@ -35,6 +35,7 @@ const APIprojects = {
         name: project,
       });
     } catch (error) {
+      console.error(error)
       throw new Error("Was not able to post project");
     }
   },
