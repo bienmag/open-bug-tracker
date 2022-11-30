@@ -35,6 +35,13 @@ const Home: NextPage = () => {
     }
   }, [router, setToken, token]);
 
+  useEffect(() => {
+    const bearer = api.defaults.headers.common["Authorization"];
+    if (typeof bearer === "string" && bearer.length > 9) {
+      router.push("http://localhost:3000/projects");
+    }
+  }, [router]);
+
   return (
     <div className={styles.container}>
       <Head>
