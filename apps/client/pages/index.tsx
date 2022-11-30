@@ -5,8 +5,9 @@
  */
 
 import { Notification } from "@contentful/f36-components";
-import type { NextPage } from "next";
+import type { NextPage, NextPageContext } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import LoginButton from "../components/newProject/LoginButton";
@@ -57,23 +58,27 @@ const Home: NextPage = () => {
         </p>
 
         <div className={styles.grid}>
-          <a
+          <Link
             href={`${localHost + PORT8080}login/github`}
             className={styles.card}
           >
-            <h2>1. Login with GitHub &rarr;</h2>
-            <p>
-              We made it easy. You only need to login using your GitHub account.
-            </p>
-          </a>
+            <div>
+              <h2>1. Login with GitHub &rarr;</h2>
+              <p>
+                We made it easy. You only need to login using your GitHub account.
+              </p>
+            </div>
+          </Link>
 
-          <a href={`${localHost + PORT3000}projects`} className={styles.card}>
-            <h2>2. Create a project &rarr;</h2>
-            <p>
-              Only authorized users can create a project. Please make sure you
-              do not skip Step 1
-            </p>
-          </a>
+          <Link href={`/projects`} className={styles.card}>
+            <div>
+              <h2>2. Create a project &rarr;</h2>
+              <p>
+                Only authorized users can create a project. Please make sure you
+                do not skip Step 1
+              </p>
+            </div>
+          </Link>
 
           <a
             // href="https://github.com/vercel/next.js/tree/canary/examples"
@@ -97,12 +102,14 @@ const Home: NextPage = () => {
             </p>
           </a>
 
-          <a href={`${localHost + PORT3000}projects`} className={styles.card}>
-            <h2>
-              4. Run the package in your app and explore the errors &rarr;
-            </h2>
-            <p>Go to my projects</p>
-          </a>
+          <Link href={`/projects`} className={styles.card}>
+            <div>
+              <h2>
+                4. Run the package in your app and explore the errors &rarr;
+              </h2>
+              <p>Go to my projects</p>
+            </div>
+          </Link>
           <LoginButton href={`${localHost + PORT8080}login/github`}>
             Sign in with GitHub
           </LoginButton>
@@ -121,3 +128,30 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+// // Dear Next.js,
+// // I want this page to be generated at build time
+// // in my machine or in Github Actions
+// // so later when users request this route
+// // they get a static HTML.
+// // Salute,
+// export async function getStaticProps() {
+
+// }
+
+// Hey ya,
+// I want this page to be generated at request time
+// in the server machine when deployed
+// so when a user requests this route
+// all data is dynamically processed.
+// Out,
+export async function getServerSideProps(context: NextPageContext) {
+  const { token } = context.query
+  if (token) {
+    context.res?.setHeader('set-cookie', `token=${token};SameSite=Lax;`)
+  }
+
+  return {
+    props: {}
+  }
+}

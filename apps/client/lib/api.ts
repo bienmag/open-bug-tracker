@@ -5,14 +5,12 @@ import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { config } from "process";
 
-const localhost = "http://localhost:";
-
 interface Data {
   name: string;
 }
 
 const api = axios.create({
-  baseURL: process.env.DEPLOY_ENV || localhost + process.env.PORT,
+  baseURL: process.env.NEXT_PUBLIC_API_HOST,
 });
 
 interface Project {
@@ -37,6 +35,7 @@ const APIprojects = {
         name: project,
       });
     } catch (error) {
+      console.error(error)
       throw new Error("Was not able to post project");
     }
   },
@@ -46,6 +45,7 @@ const APIprojects = {
         await api.get<Project[]>("/projects")
       ).data;
     } catch (error) {
+      console.error(error)
       throw new Error("was not able to get project");
     }
   },
