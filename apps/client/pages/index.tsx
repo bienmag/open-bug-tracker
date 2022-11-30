@@ -8,6 +8,7 @@ import { Notification } from "@contentful/f36-components";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { type } from "os";
 import { useEffect } from "react";
 import LoginButton from "../components/newProject/LoginButton";
 import { api } from "../lib/api";
@@ -18,18 +19,13 @@ const Home: NextPage = () => {
   const localHost = "http://localhost:";
   const PORT3000 = "3000/";
   const PORT8080 = "8080/";
-
   const router = useRouter();
   const { token } = router.query;
 
   const { setToken } = UseUser();
   useEffect(() => {
-    const bearer = api.defaults.headers.common["Authorization"];
-
-    console.log(bearer);
     if (typeof token === "string") {
       setToken(token);
-      console.log("token: ", token);
       Notification.setPlacement("top");
       Notification.success(
         "You are successfully logged in. You can now create a new project or explore an existing one."
