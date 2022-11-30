@@ -1,19 +1,10 @@
 /** @format */
 
-import {
-  Badge,
-  Box,
-  Card,
-  EntityList,
-  Subheading,
-  Modal,
-} from "@contentful/f36-components";
 import { NextPageContext } from "next";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { Key, ReactNode, useEffect, useState } from "react";
+import { useState } from "react";
 import FormProject from "../components/newProject";
-import { api, APIprojects, setToken } from "../lib/api";
+import { APIprojects, setToken } from "../lib/api";
 import { UseUser } from "../lib/auth";
 import styles from "../styles/Projects.module.css";
 import qs from 'qs'
@@ -32,7 +23,6 @@ interface ProjectPageProps {
 function Projects({ projects }: ProjectPageProps): JSX.Element {
   console.log('projects', projects)
   const [newProjects, setNewProjects] = useState<Project[]>([]);
-  const [projectId, setProjectid] = useState("");
 
   UseUser();
 
@@ -41,7 +31,6 @@ function Projects({ projects }: ProjectPageProps): JSX.Element {
   const createProject = async function (projectInput: string) {
     const result = await APIprojects.postProjects(projectInput)
     const project = result.data as Project
-    setProjectid(result?.data.id);
     setNewProjects(projects => projects.concat(project))
   };
 
