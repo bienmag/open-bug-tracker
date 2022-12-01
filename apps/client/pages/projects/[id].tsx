@@ -10,7 +10,7 @@ import {
   DateTime,
 } from "@contentful/f36-components";
 import styles from "../../styles/ProjectsId.module.css";
-import { useUser } from "../../lib/auth";
+import { UseUser } from "../../lib/auth";
 
 import Link from "next/link";
 
@@ -36,7 +36,7 @@ function ProjectId(): JSX.Element {
   const id = router.query.id;
 
   const [project, setProject] = useState<any>("");
-  useUser()
+  UseUser()
 
   useEffect(() => {
     if (typeof id !== "string") {

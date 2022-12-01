@@ -3,17 +3,17 @@
 version: "3.8"
 
 services:
-  client:
-    build:
-      context: client
-    environment:
-      NODE_ENV: development
-      API_BASE_URL: http://server:3000/
-    ports:
-      - 3000:3000
-    volumes:
-      - ./client:/app
-    command: yarn dev
+  # client:
+  #   build:
+  #     context: client
+  #   environment:
+  #     NODE_ENV: development
+  #     API_BASE_URL: http://server:3000/
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./client:/app
+  #   command: yarn dev
   # server:
   #   build:
   #     context: server
