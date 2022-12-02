@@ -65,22 +65,22 @@ const Home: NextPage = () => {
             href={`${localHost + PORT8080}login/github`}
             className={styles.card}
           >
-            <div>
+            <a className={styles.card}>
               <h2>1. Login with GitHub &rarr;</h2>
               <p>
                 We made it easy. You only need to login using your GitHub account.
               </p>
-            </div>
+            </a>
           </Link>
 
           <Link href={`/projects`} className={styles.card}>
-            <div>
+            <a className={styles.card}>
               <h2>2. Create a project &rarr;</h2>
               <p>
                 Only authorized users can create a project. Please make sure you
                 do not skip Step 1
               </p>
-            </div>
+            </a>
           </Link>
 
           <a
@@ -106,12 +106,12 @@ const Home: NextPage = () => {
           </a>
 
           <Link href={`/projects`} className={styles.card}>
-            <div>
+            <a className={styles.card}>
               <h2>
                 4. Run the package in your app and explore the errors &rarr;
               </h2>
               <p>Go to my projects</p>
-            </div>
+            </a>
           </Link>
           <LoginButton href={`${localHost + PORT8080}login/github`}>
             Sign in with GitHub
