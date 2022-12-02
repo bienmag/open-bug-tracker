@@ -92,11 +92,18 @@ export async function getServerSideProps(context: NextPageContext) {
     return redirect
   }
   setToken(token)
-  const result = await APIprojects.getProjects();
-
-  return {
-    props: {
-      projects: result
+  try {
+    console.log('token', token)
+    const result = await APIprojects.getProjects();
+    return {
+      props: {
+        projects: result
+      }
     }
+
+  } catch (error) {
+    // remove token from cookie
+    context.res?.setHeader('Set-Cookie', 'token=; Path=/; HttpOnly')
+    return redirect
   }
 }

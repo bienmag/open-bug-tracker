@@ -1,0 +1,64 @@
+$ next dev
+ready - started server on 0.0.0.0:3000, url: http://localhost:3000
+info  - Loaded env from /Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/apps/client/.env.local
+event - compiled client and server successfully in 390 ms (228 modules)
+wait  - compiling /_error (client and server)...
+event - compiled client and server successfully in 84 ms (229 modules)
+warn  - Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/basic-features/fast-refresh#how-it-works
+wait  - compiling /bugs/[id] (client and server)...
+event - compiled client and server successfully in 502 ms (824 modules)
+TypeError: (0 , _lib_auth__WEBPACK_IMPORTED_MODULE_5__.useUser) is not a function
+    at Bug (webpack-internal:///./pages/bugs/[id]/index.tsx:35:55)
+    at renderWithHooks (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5731:15)
+    at renderElement (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5946:7)
+    at renderNodeDestructiveImpl (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6104:11)
+    at renderNodeDestructive (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6076:14)
+    at renderNode (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6259:12)
+    at renderChildrenArray (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6211:7)
+    at renderNodeDestructiveImpl (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6141:7)
+    at renderNodeDestructive (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6076:14)
+warn  - Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/basic-features/fast-refresh#how-it-works
+error - pages/bugs/[id]/index.tsx (45:9) @ Bug
+error - TypeError: (0 , _lib_auth__WEBPACK_IMPORTED_MODULE_5__.useUser) is not a function
+    at Bug (webpack-internal:///./pages/bugs/[id]/index.tsx:35:55)
+    at renderWithHooks (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5731:15)
+    at renderElement (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5946:7)
+    at renderNodeDestructiveImpl (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6104:11)
+    at renderNodeDestructive (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6076:14)
+    at renderNode (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6259:12)
+    at renderChildrenArray (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6211:7)
+    at renderNodeDestructiveImpl (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6141:7)
+    at renderNodeDestructive (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6076:14) {
+  page: '/bugs/[id]'
+}
+[0m [90m 43 | [39m  [36mconst[39m router [33m=[39m useRouter()[33m;[39m[0m
+[0m [90m 44 | [39m  [36mconst[39m id [33m=[39m router[33m.[39mquery[33m.[39mid[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 45 | [39m  useUser()[33m;[39m[0m
+[0m [90m    | [39m        [31m[1m^[22m[39m[0m
+[0m [90m 46 | [39m[0m
+[0m [90m 47 | [39m  useEffect(() [33m=>[39m {[0m
+[0m [90m 48 | [39m    getBug()[33m;[39m[0m
+TypeError: (0 , _lib_auth__WEBPACK_IMPORTED_MODULE_5__.useUser) is not a function
+    at Bug (webpack-internal:///./pages/bugs/[id]/index.tsx:35:55)
+    at renderWithHooks (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5731:15)
+    at renderElement (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5946:7)
+    at renderNodeDestructiveImpl (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6104:11)
+    at renderNodeDestructive (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6076:14)
+    at renderNode (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6259:12)
+    at renderChildrenArray (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6211:7)
+    at renderNodeDestructiveImpl (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6141:7)
+    at renderNodeDestructive (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6076:14)
+error - pages/bugs/[id]/index.tsx (45:9) @ Bug
+error - TypeError: (0 , _lib_auth__WEBPACK_IMPORTED_MODULE_5__.useUser) is not a function
+    at Bug (webpack-internal:///./pages/bugs/[id]/index.tsx:35:55)
+    at renderWithHooks (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5731:15)
+    at renderElement (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5946:7)
+    at renderNodeDestructiveImpl (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6104:11)
+    at renderNodeDestructive (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6076:14)
+    at renderNode (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6259:12)
+    at renderChildrenArray (/Users/manelsolercruz/Developer/course/Seniorpart/bugtracker/open-bug-tracker/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6211:7)
+    at renderNodeDestructiveImpl (/Users/manelsolercru

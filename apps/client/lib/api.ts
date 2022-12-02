@@ -31,7 +31,7 @@ interface ProjectWithBugs {
 const APIprojects = {
   async postProjects(project: string) {
     try {
-      return await api.post("/apps/projects", {
+      return await api.post("/projects", {
         name: project,
       });
     } catch (error) {
@@ -42,7 +42,7 @@ const APIprojects = {
   async getProjects(): Promise<Project[] | undefined> {
     try {
       return await (
-        await api.get<Project[]>("/apps/projects")
+        await api.get<Project[]>("/projects")
       ).data;
     } catch (error) {
       console.error(error)
@@ -52,7 +52,7 @@ const APIprojects = {
   async getProject(id: string) {
     try {
       const result = await api.get<ProjectWithBugs>(`/project/${id}`);
-      console.log(result);
+
       return result;
     } catch (error) {
       throw new Error("was not able to get bugs");

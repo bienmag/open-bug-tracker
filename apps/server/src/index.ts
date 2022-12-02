@@ -103,17 +103,18 @@ authRouter.use((ctx, next) => {
     }
   }
   ctx.throw(401, "Invalid token");
+
 });
 
 router.post("/events", EventsController.createEvent);
-authRouter.post("/apps/projects", ProjectController.createProject);
+authRouter.post("/projects", ProjectController.createProject);
 
 authRouter.get("/bugs", BugsController.getBugs);
 authRouter.get("/bugs/:id", BugsController.getBug);
 authRouter.put("/bugs/:id/solve", BugsController.updateBug);
 
-authRouter.get("/apps/projects", ProjectController.getProjects);
-authRouter.get("/apps/project/:id", ProjectController.getProject);
+authRouter.get("/projects", ProjectController.getProjects);
+authRouter.get("/project/:id", ProjectController.getProject);
 
 authRouter.get("/bugs/:id/occurrence/:id", EventsController.getEvent);
 
